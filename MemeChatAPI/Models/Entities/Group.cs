@@ -22,8 +22,8 @@ namespace MemeChatAPI.Models.Entities
         public Guid CreatedByUserId { get; set; }
 
         public bool IsPrivate { get; set; } = false;
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-        public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow.AddHours(7);
+        public DateTime UpdatedAt { get; set; } = DateTime.UtcNow.AddHours(7);
 
         // Navigation properties
         [ForeignKey("CreatedByUserId")]

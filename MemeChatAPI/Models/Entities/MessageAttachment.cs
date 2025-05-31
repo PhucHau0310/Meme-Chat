@@ -29,7 +29,7 @@ namespace MemeChatAPI.Models.Entities
         public int? Height { get; set; } // Cho hình ảnh
         public int? Duration { get; set; } // Cho audio/video (giây)
 
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow.AddHours(7);
 
         // Navigation properties
         [ForeignKey("MessageId")]

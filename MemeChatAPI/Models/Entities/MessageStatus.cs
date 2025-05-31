@@ -21,7 +21,7 @@ namespace MemeChatAPI.Models.Entities
         public Guid UserId { get; set; }
 
         public MessageStatusType Status { get; set; } = MessageStatusType.Sent;
-        public DateTime StatusTime { get; set; } = DateTime.UtcNow;
+        public DateTime StatusTime { get; set; } = DateTime.UtcNow.AddHours(7);
 
         // Navigation properties
         [ForeignKey("MessageId")]

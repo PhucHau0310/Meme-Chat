@@ -23,7 +23,7 @@ namespace MemeChatAPI.Models.Entities
         public Guid User2Id { get; set; }
 
         public FriendshipStatus Status { get; set; } = FriendshipStatus.Pending;
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow.AddHours(7);
         public DateTime? AcceptedAt { get; set; }
 
         // Navigation properties

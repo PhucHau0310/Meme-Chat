@@ -24,8 +24,8 @@ namespace MemeChatAPI.Models.Entities
         public string? Title { get; set; } // Tên cuộc trò chuyện
 
         public Guid? LastMessageId { get; set; }
-        public DateTime LastActivity { get; set; } = DateTime.UtcNow;
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime LastActivity { get; set; } = DateTime.UtcNow.AddHours(7);
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow.AddHours(7);
 
         // Navigation properties
         [ForeignKey("User1Id")]

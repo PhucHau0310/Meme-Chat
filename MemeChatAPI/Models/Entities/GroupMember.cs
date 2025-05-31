@@ -22,7 +22,7 @@ namespace MemeChatAPI.Models.Entities
         public Guid UserId { get; set; }
 
         public GroupMemberRole Role { get; set; } = GroupMemberRole.Member;
-        public DateTime JoinedAt { get; set; } = DateTime.UtcNow;
+        public DateTime JoinedAt { get; set; } = DateTime.UtcNow.AddHours(7);
         public bool IsActive { get; set; } = true;
 
         // Navigation properties

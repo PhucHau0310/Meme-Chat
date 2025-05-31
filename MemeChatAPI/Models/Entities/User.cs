@@ -23,9 +23,9 @@ namespace MemeChatAPI.Models.Entities
         public string? GoogleId { get; set; } // Cho Google OAuth
 
         public bool IsOnline { get; set; } = false;
-        public DateTime LastSeen { get; set; } = DateTime.UtcNow;
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-        public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime LastSeen { get; set; } = DateTime.UtcNow.AddHours(7);
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow.AddHours(7);
+        public DateTime UpdatedAt { get; set; } = DateTime.UtcNow.AddHours(7);
 
         // Navigation properties
         public virtual ICollection<Friendship> FriendsAsUser1 { get; set; } = new List<Friendship>();

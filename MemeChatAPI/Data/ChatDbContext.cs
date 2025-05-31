@@ -65,12 +65,12 @@ namespace MemeChatAPI.Data
                 entity.HasOne(gm => gm.Group)
                     .WithMany(g => g.Members)
                     .HasForeignKey(gm => gm.GroupId)
-                    .OnDelete(DeleteBehavior.Cascade);
+                    .OnDelete(DeleteBehavior.Restrict);
 
                 entity.HasOne(gm => gm.User)
                     .WithMany(u => u.GroupMemberships)
                     .HasForeignKey(gm => gm.UserId)
-                    .OnDelete(DeleteBehavior.Cascade);
+                    .OnDelete(DeleteBehavior.Restrict);
 
                 entity.HasIndex(e => new { e.GroupId, e.UserId }).IsUnique();
             });
@@ -91,7 +91,7 @@ namespace MemeChatAPI.Data
                 entity.HasOne(m => m.Group)
                     .WithMany(g => g.Messages)
                     .HasForeignKey(m => m.GroupId)
-                    .OnDelete(DeleteBehavior.Cascade);
+                    .OnDelete(DeleteBehavior.Restrict);
 
                 entity.HasOne(m => m.ReplyToMessage)
                     .WithMany()
@@ -109,7 +109,7 @@ namespace MemeChatAPI.Data
                 entity.HasOne(ma => ma.Message)
                     .WithMany(m => m.Attachments)
                     .HasForeignKey(ma => ma.MessageId)
-                    .OnDelete(DeleteBehavior.Cascade);
+                    .OnDelete(DeleteBehavior.Restrict);
             });
 
             // MessageStatus configurations
@@ -118,12 +118,12 @@ namespace MemeChatAPI.Data
                 entity.HasOne(ms => ms.Message)
                     .WithMany(m => m.MessageStatuses)
                     .HasForeignKey(ms => ms.MessageId)
-                    .OnDelete(DeleteBehavior.Cascade);
+                    .OnDelete(DeleteBehavior.Restrict);
 
                 entity.HasOne(ms => ms.User)
                     .WithMany(u => u.MessageStatuses)
                     .HasForeignKey(ms => ms.UserId)
-                    .OnDelete(DeleteBehavior.Cascade);
+                    .OnDelete(DeleteBehavior.Restrict);
 
                 entity.HasIndex(e => new { e.MessageId, e.UserId }).IsUnique();
             });
@@ -134,12 +134,12 @@ namespace MemeChatAPI.Data
                 entity.HasOne(mr => mr.Message)
                     .WithMany(m => m.Reactions)
                     .HasForeignKey(mr => mr.MessageId)
-                    .OnDelete(DeleteBehavior.Cascade);
+                    .OnDelete(DeleteBehavior.Restrict);
 
                 entity.HasOne(mr => mr.User)
                     .WithMany()
                     .HasForeignKey(mr => mr.UserId)
-                    .OnDelete(DeleteBehavior.Cascade);
+                    .OnDelete(DeleteBehavior.Restrict);
 
                 entity.HasIndex(e => new { e.MessageId, e.UserId, e.Emoji }).IsUnique();
             });
@@ -160,7 +160,7 @@ namespace MemeChatAPI.Data
                 entity.HasOne(c => c.Group)
                     .WithMany()
                     .HasForeignKey(c => c.GroupId)
-                    .OnDelete(DeleteBehavior.Cascade);
+                    .OnDelete(DeleteBehavior.Restrict);
 
                 entity.HasOne(c => c.LastMessage)
                     .WithMany()
@@ -174,12 +174,12 @@ namespace MemeChatAPI.Data
                 entity.HasOne(cp => cp.Conversation)
                     .WithMany(c => c.Participants)
                     .HasForeignKey(cp => cp.ConversationId)
-                    .OnDelete(DeleteBehavior.Cascade);
+                    .OnDelete(DeleteBehavior.Restrict);
 
                 entity.HasOne(cp => cp.User)
                     .WithMany()
                     .HasForeignKey(cp => cp.UserId)
-                    .OnDelete(DeleteBehavior.Cascade);
+                    .OnDelete(DeleteBehavior.Restrict);
 
                 entity.HasIndex(e => new { e.ConversationId, e.UserId }).IsUnique();
             });
@@ -190,7 +190,7 @@ namespace MemeChatAPI.Data
                 entity.HasOne(uc => uc.User)
                     .WithMany()
                     .HasForeignKey(uc => uc.UserId)
-                    .OnDelete(DeleteBehavior.Cascade);
+                    .OnDelete(DeleteBehavior.Restrict);
 
                 entity.HasIndex(e => e.ConnectionId).IsUnique();
                 entity.HasIndex(e => e.UserId);
@@ -202,7 +202,7 @@ namespace MemeChatAPI.Data
                 entity.HasOne(n => n.User)
                     .WithMany()
                     .HasForeignKey(n => n.UserId)
-                    .OnDelete(DeleteBehavior.Cascade);
+                    .OnDelete(DeleteBehavior.Restrict);
 
                 entity.HasIndex(e => new { e.UserId, e.IsRead });
                 entity.HasIndex(e => e.CreatedAt);

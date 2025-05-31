@@ -14,7 +14,7 @@ namespace MemeChatAPI.Models.Entities
         [Required]
         public Guid UserId { get; set; }
 
-        public DateTime LastReadTime { get; set; } = DateTime.UtcNow;
+        public DateTime LastReadTime { get; set; } = DateTime.UtcNow.AddHours(7);
         public int UnreadCount { get; set; } = 0;
         public bool IsMuted { get; set; } = false;
         public bool IsArchived { get; set; } = false;

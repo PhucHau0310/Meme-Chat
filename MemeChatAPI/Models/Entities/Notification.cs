@@ -34,7 +34,7 @@ namespace MemeChatAPI.Models.Entities
         public Guid? RelatedEntityId { get; set; } // ID của message, friendship request, etc.
 
         public bool IsRead { get; set; } = false;
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow.AddHours(7);
         public DateTime? ReadAt { get; set; }
 
         // Navigation properties

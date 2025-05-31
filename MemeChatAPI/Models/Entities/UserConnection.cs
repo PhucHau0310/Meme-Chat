@@ -21,8 +21,8 @@ namespace MemeChatAPI.Models.Entities
         [MaxLength(45)]
         public string? IpAddress { get; set; }
 
-        public DateTime ConnectedAt { get; set; } = DateTime.UtcNow;
-        public DateTime LastActivity { get; set; } = DateTime.UtcNow;
+        public DateTime ConnectedAt { get; set; } = DateTime.UtcNow.AddHours(7);
+        public DateTime LastActivity { get; set; } = DateTime.UtcNow.AddHours(7);
 
         // Navigation properties
         [ForeignKey("UserId")]
