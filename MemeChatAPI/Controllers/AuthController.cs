@@ -45,17 +45,14 @@ namespace MemeChatAPI.Controllers
             var googleId = claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
             var email = claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
             var name = claims.FirstOrDefault(c => c.Type == ClaimTypes.Name)?.Value;
-            //var picture = claims.FirstOrDefault(c => c.Type == "picture")?.Value;
             var picture = result.Principal.FindFirst("profile_picture")?.Value;
 
             if (string.IsNullOrEmpty(googleId) || string.IsNullOrEmpty(email))
                 return BadRequest("Required information not provided by Google");
 
-            // Check if user exists
             var user = await _userService.GetUserByGoogleIdAsync(googleId);
             if (user == null)
             {
-                // Create new user
                 user = new User
                 {
                     GoogleId = googleId,
@@ -66,10 +63,12 @@ namespace MemeChatAPI.Controllers
                 user = await _userService.CreateUserAsync(user);
             }
 
-            // Generate JWT token or set authentication cookie
             var token = GenerateJwtToken(user);
 
-            return Ok(new { Token = token, User = user });
+            // Lấy FrontendUrl từ cấu hình
+            var frontendUrl = _configuration["FrontendUrl"] ?? "http://localhost:3000";
+            var redirectUrl = $"{frontendUrl}/auth/callback?token={token}";
+            return Redirect(redirectUrl);
         }
 
         [HttpPost("logout")]

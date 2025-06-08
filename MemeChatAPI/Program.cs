@@ -21,11 +21,13 @@ var connectionString = Environment.GetEnvironmentVariable("DefaultConnection");
 var googleClientId = Environment.GetEnvironmentVariable("GoogleClientId");
 var googleClientSecret = Environment.GetEnvironmentVariable("GoogleClientSecret");
 var jwtSecretKey = Environment.GetEnvironmentVariable("JwtSecretKey");
+var frontendUrl = Environment.GetEnvironmentVariable("FrontendUrl");
 
 if (string.IsNullOrEmpty(connectionString) ||
     string.IsNullOrEmpty(googleClientId) ||
     string.IsNullOrEmpty(googleClientSecret) ||
-    string.IsNullOrEmpty(jwtSecretKey))
+    string.IsNullOrEmpty(jwtSecretKey) ||
+    string.IsNullOrEmpty(frontendUrl))
 {
     throw new InvalidOperationException("Environment variables are not set correctly.");
 }
@@ -34,6 +36,7 @@ builder.Configuration["ConnectionStrings:DefaultConnection"] = connectionString;
 builder.Configuration["Google:ClientId"] = googleClientId;
 builder.Configuration["Google:ClientSecret"] = googleClientSecret;
 builder.Configuration["Jwt:SecretKey"] = jwtSecretKey;
+builder.Configuration["FrontendUrl"] = frontendUrl;
 
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
